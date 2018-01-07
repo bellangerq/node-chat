@@ -7,7 +7,7 @@
     "node": "9.3.0"
   },
   "scripts": {
-    "start": "node server.js",
+    "start": "babel-node server.js",
     "dev": "concurrently \"npm run server\" \"npm run build\" --names \"💻,📦\" --prefix name",
     "server": "nodemon server.js",
     "build": "babel ./javascript  --watch --out-dir public/ --copy-files",
