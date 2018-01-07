@@ -1,4 +1,4 @@
-const socket = io.connect('http://localhost:4000')
+const socket = io.connect('http://localhost:4000' || 'https://dry-badlands-98503.herokuapp.com')
 
 const messageForm = document.querySelector('#message-form')
 const message = document.querySelector("input[name='message']")
