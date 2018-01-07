@@ -1,6 +1,6 @@
 'use strict';
 
-var socket = io.connect('http://localhost:4000');
+var socket = io.connect('https://dry-badlands-98503.herokuapp.com/');
 
 var messageForm = document.querySelector('#message-form');
 var message = document.querySelector("input[name='message']");
