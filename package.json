@@ -7,8 +7,8 @@
     "node": "9.3.0"
   },
   "scripts": {
-    "dev": "node server.js",
-    "start": "concurrently \"npm run server\" \"npm run build\" --names \"💻,📦\" --prefix name",
+    "start": "node server.js",
+    "dev": "concurrently \"npm run server\" \"npm run build\" --names \"💻,📦\" --prefix name",
     "server": "nodemon server.js",
     "build": "babel ./javascript  --watch --out-dir public/ --copy-files",
     "test": "echo \"Error: no test specified\" && exit 1"
