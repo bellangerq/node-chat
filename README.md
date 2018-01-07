@@ -4,9 +4,9 @@ Simple chat app built with [Node.js](https://nodejs.org) and [Socket.io](https:/
 
 ## To do
 
-- [ ] Add date to messages (moment.js)
 - [x] Setup Babel
 - [x] Setup Sass
-- [ ] Host app (Heroku)
+- [x] Host app (Heroku)
+- [ ] Add date to messages (moment.js)
 - [ ] Add login with username
 - [ ] Style app

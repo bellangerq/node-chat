@@ -2,7 +2,10 @@
   "name": "vue-chat",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
+  "engines": {
+    "node": "9.3.0"
+  },
   "scripts": {
     "start": "concurrently \"npm run server\" \"npm run build\" --names \"💻,📦\" --prefix name",
     "server": "nodemon server.js",
