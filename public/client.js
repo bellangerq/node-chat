@@ -1,19 +1,21 @@
-const socket = io.connect('http://localhost:4000')
+'use strict';
 
-const messageForm = document.querySelector('#message-form')
-const message = document.querySelector("input[name='message']")
-const messagesList = document.querySelector('#messages-list')
+var socket = io.connect('http://localhost:4000');
 
-socket.on('addmessage', data => {
-  messagesList.insertAdjacentHTML('beforeend', `<p>${data.message}</p>`)
-})
+var messageForm = document.querySelector('#message-form');
+var message = document.querySelector("input[name='message']");
+var messagesList = document.querySelector('#messages-list');
 
-messageForm.addEventListener('submit', (e) => {
-  e.preventDefault()
+socket.on('addmessage', function (data) {
+  messagesList.insertAdjacentHTML('beforeend', '<p>' + data.message + '</p>');
+});
+
+messageForm.addEventListener('submit', function (e) {
+  e.preventDefault();
 
   socket.emit('newmessage', {
-    message: message.value,
-  })
+    message: message.value
+  });
 
-  message.value = ''
-})
+  message.value = '';
+});
