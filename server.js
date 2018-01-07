@@ -15,7 +15,8 @@ app.use(sassMiddleware({
   prefix: '/public'
 }))
 
-server.listen(4000)
+server.listen(process.env.PORT || 4000)
+
 app.use('/public', express.static(path.join(__dirname, 'public')))
 
 app.get('/', (req, res) => {
