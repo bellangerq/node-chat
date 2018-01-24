@@ -1,6 +1,6 @@
 'use strict';
 
-var socket = io.connect('http://localhost:4000');
+var socket = io.connect('https://node-socket-messenger.herokuapp.com/');
 
 var loginWrapper = document.querySelector('#wrapper-login');
 var loginForm = document.querySelector('#login-form');
