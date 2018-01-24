@@ -10,5 +10,5 @@ Simple chat app built with [Node.js](https://nodejs.org) and [Socket.io](https:/
 - [ ] Manage dev/prod Socket URL
 - [ ] Add date to messages (moment.js)
 - [ ] Add login with username
-- [ ] Auto scroll on new messages
+- [x] Auto scroll on new messages
 - [x] Count connected users

@@ -9,6 +9,10 @@ header {
   padding: 20px;
   text-align: center;
 
+  @media(max-width: 768px) {
+    border-radius: 0;
+  }
+
   h1 {
     color: $color-main;
     font-size: 14px;

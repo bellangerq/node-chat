@@ -5,7 +5,8 @@ form {
   display: flex;
   padding: 20px;
 
-  [name=message], [name=username] {
+  [name=message],
+  [name=username] {
     border: 0;
     border-radius: 5px;
     flex-grow: 1;
@@ -26,7 +27,12 @@ form {
     margin: 0 0 0 20px;
     width: 20%;
   }
+
   &.messages-form {
     height: 29px;
+  }
+
+  @media(max-width: 768px) {
+    border-radius: 0;
   }
 }
