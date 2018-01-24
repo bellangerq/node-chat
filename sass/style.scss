@@ -9,6 +9,7 @@ body {
   background: linear-gradient(45deg, $color-main, darken($color-main, 5%));
   color: $color-black;
   display: flex;
+  font-family: $font-sans;
   height: 100vh;
   justify-content: center;
   margin: 0;

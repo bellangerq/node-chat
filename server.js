@@ -24,15 +24,24 @@ app.get('/', (req, res) => {
 })
 
 let me = false
+let connectedClients;
 
 io.on('connection', socket => {
 
+  // Count clients
+  io.clients((error, clients) => {
+    if (error) throw error
+    connectedClients = clients
+  });
+
+  // Detect new client
   socket.on('login', user => {
     me = user
     socket.emit('logged')
-    io.emit('newuser', me)
+    io.emit('newuser', me, connectedClients)
   })
 
+  // Send message
   socket.on('newmessage', data => {
     io.emit('addmessage', data)
   })
