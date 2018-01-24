@@ -1,9 +1,9 @@
 const socket = io.connect('http://localhost:4000/')
-const loginWrapper = document.querySelector('#wrapper-login')
+const loginWrapper = document.querySelector('#login')
 const loginForm = document.querySelector('#login-form')
 const username = document.querySelector("input[name='username']")
 
-const messageWrapper = document.querySelector('#messages')
+const wrapper = document.querySelector('.wrapper')
 const messageForm = document.querySelector('#messages-form')
 const message = document.querySelector("input[name='message']")
 const messagesList = document.querySelector('#messages-list')
@@ -14,11 +14,11 @@ const clientsCountContent = document.querySelector('#live-count')
 // ---------
 // ON SOCKET
 // ---------
-// socket.on('logged', () => {
-//   loginWrapper.style.display = 'none'
-//   messageWrapper.style.display = 'block'
-//   message.focus()
-// })
+socket.on('logged', () => {
+  loginWrapper.style.display = 'none'
+  wrapper.style.display = 'block'
+  message.focus()
+})
 
 socket.on('newuser', (user, connectedClients) => {
   console.log(connectedClients)
@@ -35,14 +35,16 @@ socket.on('addmessage', (data, clientsCount) => {
 // ---------
 // JOINING CHAT
 // ---------
-// loginForm.addEventListener('submit', (e) => {
-//   e.preventDefault()
-//
-//   socket.emit('login', {
-//     username: username.value
-//   })
-//
-// })
+loginForm.addEventListener('submit', (e) => {
+  e.preventDefault()
+
+  if (username.value != '') {
+    socket.emit('login', {
+      username: username.value
+    })
+  }
+
+})
 
 // ---------
 // SENDING MESSAGES
@@ -54,7 +56,6 @@ messageForm.addEventListener('submit', (e) => {
     socket.emit('newmessage', {
       message: message.value,
     })
-
     message.value = ''
   }
 })

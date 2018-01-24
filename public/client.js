@@ -1,11 +1,11 @@
 'use strict';
 
 var socket = io.connect('http://localhost:4000/');
-var loginWrapper = document.querySelector('#wrapper-login');
+var loginWrapper = document.querySelector('#login');
 var loginForm = document.querySelector('#login-form');
 var username = document.querySelector("input[name='username']");
 
-var messageWrapper = document.querySelector('#messages');
+var wrapper = document.querySelector('.wrapper');
 var messageForm = document.querySelector('#messages-form');
 var message = document.querySelector("input[name='message']");
 var messagesList = document.querySelector('#messages-list');
@@ -16,11 +16,11 @@ var clientsCountContent = document.querySelector('#live-count');
 // ---------
 // ON SOCKET
 // ---------
-// socket.on('logged', () => {
-//   loginWrapper.style.display = 'none'
-//   messageWrapper.style.display = 'block'
-//   message.focus()
-// })
+socket.on('logged', function () {
+  loginWrapper.style.display = 'none';
+  wrapper.style.display = 'block';
+  message.focus();
+});
 
 socket.on('newuser', function (user, connectedClients) {
   console.log(connectedClients);
@@ -36,14 +36,15 @@ socket.on('addmessage', function (data, clientsCount) {
 // ---------
 // JOINING CHAT
 // ---------
-// loginForm.addEventListener('submit', (e) => {
-//   e.preventDefault()
-//
-//   socket.emit('login', {
-//     username: username.value
-//   })
-//
-// })
+loginForm.addEventListener('submit', function (e) {
+  e.preventDefault();
+
+  if (username.value != '') {
+    socket.emit('login', {
+      username: username.value
+    });
+  }
+});
 
 // ---------
 // SENDING MESSAGES
@@ -55,7 +56,6 @@ messageForm.addEventListener('submit', function (e) {
     socket.emit('newmessage', {
       message: message.value
     });
-
     message.value = '';
   }
 });

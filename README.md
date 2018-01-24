@@ -12,4 +12,3 @@ Simple chat app built with [Node.js](https://nodejs.org) and [Socket.io](https:/
 - [ ] Add login with username
 - [ ] Auto scroll on new messages
 - [x] Count connected users
-- [ ] Style app

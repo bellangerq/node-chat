@@ -1,11 +1,11 @@
-.messages-form {
+form {
   background: $color-white;
   border-radius: 0 0 5px 5px;
   border-top: 1px solid $color-light-gray;
   display: flex;
   padding: 20px;
 
-  [name=message] {
+  [name=message], [name=username] {
     border: 0;
     border-radius: 5px;
     flex-grow: 1;
@@ -25,5 +25,8 @@
     font-size: 16px;
     margin: 0 0 0 20px;
     width: 20%;
+  }
+  &.messages-form {
+    height: 29px;
   }
 }
