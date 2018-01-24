@@ -1,22 +1,40 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta charset="utf-8">
-    <title>Node Vue Chat</title>
+    <title>Node Chat</title>
     <link rel="stylesheet" href="/public/style.css">
   </head>
   <body>
-
     <div class="wrapper">
-      <h1>Chat app</h1>
+      <header>
+        Node Chat Application
+      </header>
 
-      <div id="messages-list"></div>
+      <div class="messages" id="messages">
 
-      <form id="message-form">
-        <input name="message" type="text" placeholder="Your message">
+        <div class="messages-list" id="messages-list">
+          <p id="empty">No messages yet...</p>
+        </div>
+      </div>
+
+      <form class="messages-form" id="messages-form">
+        <input name="message" type="text" placeholder="Type your message">
         <input type="submit" value="Send">
       </form>
     </div>
+
+
+
+    <!-- <div class="wrapper" id="wrapper-login">
+      <h2>Login to chat</h2>
+      <form id="login-form">
+        <input type="text" name="username" placeholder="username">
+        <input type="submit" name="" value="Join chat">
+      </form>
+    </div> -->
 
     <script type="text/javascript" src="/socket.io/socket.io.js"></script>
     <script type="text/javascript" src="/public/client.js"></script>

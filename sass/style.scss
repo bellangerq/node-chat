@@ -1,10 +1,16 @@
-body {
-  background: #e0e0e0;
-  margin: 100px auto;
-  width: 600px;
+@import 'base/variables';
+@import 'components/header';
+@import 'components/messages';
+@import 'components/form';
+@import 'layout';
 
-  .wrapper {
-    background: white;
-    padding: 20px;
-  }
+body {
+  align-items: center;
+  background: linear-gradient(45deg, $color-main, darken($color-main, 5%));
+  color: $color-black;
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  margin: 0;
+  width: 100vw;
 }

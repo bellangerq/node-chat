@@ -23,7 +23,15 @@ app.get('/', (req, res) => {
   res.sendFile(__dirname + '/index.html')
 })
 
+let me = false
+
 io.on('connection', socket => {
+
+  socket.on('login', user => {
+    me = user
+    socket.emit('logged')
+    io.emit('newuser', me)
+  })
 
   socket.on('newmessage', data => {
     io.emit('addmessage', data)

@@ -1,0 +1,29 @@
+.messages-form {
+  background: $color-white;
+  border-radius: 0 0 5px 5px;
+  border-top: 1px solid $color-light-gray;
+  display: flex;
+  padding: 20px;
+
+  [name=message] {
+    border: 0;
+    border-radius: 5px;
+    flex-grow: 1;
+    font-size: 16px;
+    padding: 5px;
+
+    &::-webkit-input-placeholder {
+      color: $color-light-gray;
+    }
+  }
+
+  [type=submit] {
+    background: linear-gradient(45deg, $color-main, darken($color-main, 5%));
+    border: 0;
+    border-radius: 5px;
+    color: $color-white;
+    font-size: 16px;
+    margin: 0 0 0 20px;
+    width: 20%;
+  }
+}

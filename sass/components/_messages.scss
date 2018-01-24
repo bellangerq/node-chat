@@ -1,0 +1,17 @@
+.messages {
+  background: $color-white;
+  padding: 20px;
+
+  .messages-list {
+    max-height: 400px;
+    min-height: 200px;
+    overflow-y: scroll;
+  }
+
+  .message {
+    background: $color-light-gray;
+    border-radius: 5px;
+    margin: 0 0 20px;
+    padding: 20px;
+  }
+}
