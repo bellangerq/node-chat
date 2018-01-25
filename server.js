@@ -23,15 +23,15 @@ app.get('/', (req, res) => {
   res.sendFile(__dirname + '/index.html')
 })
 
-let me = false
-let connectedClients;
+let me
+let connectedClients
 
 io.on('connection', socket => {
 
   // Count clients
   io.clients((error, clients) => {
     if (error) throw error
-    connectedClients = clients
+    connectedClients = clients.length
   });
 
   // Detect new client
@@ -44,5 +44,11 @@ io.on('connection', socket => {
   // Send message
   socket.on('newmessage', data => {
     io.emit('addmessage', data)
+  })
+
+  // Detect client left
+  socket.on('disconnect', () => {
+    connectedClients--
+    io.emit('userleft', connectedClients)
   })
 })

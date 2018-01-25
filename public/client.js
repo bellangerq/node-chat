@@ -1,6 +1,6 @@
 'use strict';
 
-var socket = io.connect('https://node-socket-messenger.herokuapp.com/');
+var socket = io.connect('http://localhost:4000');
 var loginWrapper = document.querySelector('#login');
 var loginForm = document.querySelector('#login-form');
 var username = document.querySelector("input[name='username']");
@@ -23,15 +23,18 @@ socket.on('logged', function () {
 });
 
 socket.on('newuser', function (user, connectedClients) {
-  console.log(connectedClients);
-  clientsCountContent.innerHTML = connectedClients.length;
-  console.log('New user: ' + user.username);
+  clientsCountContent.innerHTML = connectedClients;
+  // console.log(`New user: ${user.username}`)
 });
 
-socket.on('addmessage', function (data, clientsCount) {
+socket.on('addmessage', function (data) {
   empty.style.display = 'none';
   messagesList.insertAdjacentHTML('beforeend', '<p class="message">' + data.message + '</p>');
   messagesList.scrollTop = messagesList.offsetHeight;
+});
+
+socket.on('userleft', function (connectedClients) {
+  clientsCountContent.innerHTML = connectedClients;
 });
 
 // ---------

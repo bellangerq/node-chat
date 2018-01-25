@@ -1,4 +1,4 @@
-const socket = io.connect('https://node-socket-messenger.herokuapp.com/')
+const socket = io.connect('http://localhost:4000')
 const loginWrapper = document.querySelector('#login')
 const loginForm = document.querySelector('#login-form')
 const username = document.querySelector("input[name='username']")
@@ -21,15 +21,18 @@ socket.on('logged', () => {
 })
 
 socket.on('newuser', (user, connectedClients) => {
-  console.log(connectedClients)
-  clientsCountContent.innerHTML = connectedClients.length
-  console.log(`New user: ${user.username}`)
+  clientsCountContent.innerHTML = connectedClients
+  // console.log(`New user: ${user.username}`)
 })
 
-socket.on('addmessage', (data, clientsCount) => {
+socket.on('addmessage', data => {
   empty.style.display = 'none'
   messagesList.insertAdjacentHTML('beforeend', `<p class="message">${data.message}</p>`)
   messagesList.scrollTop = messagesList.offsetHeight
+})
+
+socket.on('userleft', connectedClients => {
+  clientsCountContent.innerHTML = connectedClients
 })
 
 // ---------
