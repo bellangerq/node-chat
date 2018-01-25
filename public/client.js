@@ -1,6 +1,6 @@
 'use strict';
 
-var socket = io.connect('http://localhost:4000');
+var socket = io.connect('https://node-socket-messenger.herokuapp.com/');
 var loginWrapper = document.querySelector('#login');
 var loginForm = document.querySelector('#login-form');
 var username = document.querySelector("input[name='username']");
@@ -13,33 +13,31 @@ var empty = document.querySelector('#empty');
 
 var clientsCountContent = document.querySelector('#live-count');
 
-// ---------
-// ON SOCKET
-// ---------
+// Hide login - Show chat
 socket.on('logged', function () {
   loginWrapper.style.display = 'none';
   wrapper.style.display = 'block';
   message.focus();
 });
 
+// Update clients count when user login
 socket.on('newuser', function (user, connectedClients) {
   clientsCountContent.innerHTML = connectedClients;
-  // console.log(`New user: ${user.username}`)
 });
 
+// Display new message
 socket.on('addmessage', function (data) {
   empty.style.display = 'none';
   messagesList.insertAdjacentHTML('beforeend', '<p class="message">' + data.message + '</p>');
   messagesList.scrollTop = messagesList.offsetHeight;
 });
 
+// Update clients count when user leave
 socket.on('userleft', function (connectedClients) {
   clientsCountContent.innerHTML = connectedClients;
 });
 
-// ---------
-// JOINING CHAT
-// ---------
+// Join chat
 loginForm.addEventListener('submit', function (e) {
   e.preventDefault();
 
@@ -50,9 +48,7 @@ loginForm.addEventListener('submit', function (e) {
   }
 });
 
-// ---------
-// SENDING MESSAGES
-// ---------
+// Send new message
 messageForm.addEventListener('submit', function (e) {
   e.preventDefault();
 

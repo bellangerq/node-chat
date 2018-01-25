@@ -3,9 +3,9 @@ const app = express()
 const server = require('http').Server(app)
 const path = require('path')
 const io = require('socket.io')(server)
-
 const sassMiddleware = require('node-sass-middleware')
 
+// Middlewares
 app.use(sassMiddleware({
   src: path.join(__dirname, '/sass'),
   dest: path.join(__dirname, '/public'),
@@ -15,14 +15,15 @@ app.use(sassMiddleware({
   prefix: '/public'
 }))
 
-server.listen(process.env.PORT || 4000)
-
 app.use('/public', express.static(path.join(__dirname, 'public')))
-
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/index.html')
 })
 
+// localhost:4000
+server.listen(process.env.PORT || 4000)
+
+// Init variables
 let me
 let connectedClients
 

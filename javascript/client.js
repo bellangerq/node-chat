@@ -1,4 +1,4 @@
-const socket = io.connect('http://localhost:4000')
+const socket = io.connect('https://node-socket-messenger.herokuapp.com/')
 const loginWrapper = document.querySelector('#login')
 const loginForm = document.querySelector('#login-form')
 const username = document.querySelector("input[name='username']")
@@ -11,33 +11,31 @@ const empty = document.querySelector('#empty')
 
 const clientsCountContent = document.querySelector('#live-count')
 
-// ---------
-// ON SOCKET
-// ---------
+// Hide login - Show chat
 socket.on('logged', () => {
   loginWrapper.style.display = 'none'
   wrapper.style.display = 'block'
   message.focus()
 })
 
+// Update clients count when user login
 socket.on('newuser', (user, connectedClients) => {
   clientsCountContent.innerHTML = connectedClients
-  // console.log(`New user: ${user.username}`)
 })
 
+// Display new message
 socket.on('addmessage', data => {
   empty.style.display = 'none'
   messagesList.insertAdjacentHTML('beforeend', `<p class="message">${data.message}</p>`)
   messagesList.scrollTop = messagesList.offsetHeight
 })
 
+// Update clients count when user leave
 socket.on('userleft', connectedClients => {
   clientsCountContent.innerHTML = connectedClients
 })
 
-// ---------
-// JOINING CHAT
-// ---------
+// Join chat
 loginForm.addEventListener('submit', (e) => {
   e.preventDefault()
 
@@ -46,12 +44,9 @@ loginForm.addEventListener('submit', (e) => {
       username: username.value
     })
   }
-
 })
 
-// ---------
-// SENDING MESSAGES
-// ---------
+// Send new message
 messageForm.addEventListener('submit', (e) => {
   e.preventDefault()
 
