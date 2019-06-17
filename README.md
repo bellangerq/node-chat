@@ -1,3 +1,3 @@
-# node-vue-chat
+# Live chat app
 
-Simple chat app built with [Node.js](https://nodejs.org) and [Socket.io](https://socket.io/).
+A live-chat app built with [Node.js](https://nodejs.org) and [Socket.io](https://socket.io/).
